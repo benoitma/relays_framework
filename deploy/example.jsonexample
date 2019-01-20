@@ -1,0 +1,19 @@
+{
+  "apps": [{
+    "name": "api",
+    "script": "./main.js",
+  }],
+  "deploy" : {
+    "production" : {
+      "user" : "root",
+      "host" : ["192.168.0.0"],
+      "ref"  : "origin/master",
+      "repo" : "git@bitbucket.org:blabla/repo.git",
+      "path" : "/path/to/install",
+      "post-deploy" : "gulp build && pm2 startOrRestart ecosystem.json --env production",
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

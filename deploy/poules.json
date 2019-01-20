@@ -1,0 +1,19 @@
+{
+  "apps": [{
+    "name": "api",
+    "script": "./main.js",
+  }],
+  "deploy" : {
+    "production" : {
+      "user" : "root",
+      "host" : ["192.168.86.48"],
+      "ref"  : "origin/master",
+      "repo" : "git@bitbucket.org:benoitma/maison-edison.git",
+      "path" : "/home/root/maison-edison",
+      "post-deploy" : "gulp build && pm2 startOrRestart ecosystem.json --env production",
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

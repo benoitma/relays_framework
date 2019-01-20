@@ -1,0 +1,19 @@
+{
+  "apps": [{
+    "name": "api",
+    "script": "./main.js",
+  }],
+  "deploy" : {
+    "production" : {
+      "user" : "root",
+      "host" : ["192.168.86.136"],
+      "ref"  : "origin/master",
+      "repo" : "https://github.com/benoitma/relays_framework.git",
+      "path" : "/home/pi/relays_framework",
+      "post-deploy" : "npm install --production && /usr/bin/gulp build && pm2 startOrRestart /home/pi/relays_framework/shared/pm2.json --env production",
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
