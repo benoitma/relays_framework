@@ -47,15 +47,15 @@ class Scenario extends Interruptor_1.default {
             throw "Sequence missing";
         if (!Array.isArray(this.sequence))
             throw "Sequence should be an array";
-        for (var i = 0, len = this.sequence.length; i < len; i++) {
-            let item = this.sequence[i];
+        for (let i = 0, len = this.sequence.length; i < len; i++) {
+            const item = this.sequence[i];
             if (!item.options)
                 throw "[OPTIONS ERROR] [item ${i}] item must have options]";
             // Interruptor types
             if (item.type == "interruptor") {
                 if (!item.options.interruptor)
                     throw "[interruptor ERROR] [item ${i}] item should have an interruptor";
-                let isInterruptor = item.options.interruptor instanceof Interruptor_1.default;
+                const isInterruptor = item.options.interruptor instanceof Interruptor_1.default;
                 if (!isInterruptor)
                     throw "[interruptor ERROR] options.interruptor should be an instance of Interruptor";
                 if (!Number.isInteger(item.options.duration))
@@ -67,15 +67,15 @@ class Scenario extends Interruptor_1.default {
         super.turnOn();
         console.log(`Turning on scenario ${this.name} at ${this.turnedOnAt}`);
         this.timeouts = [];
-        for (var i = 0, len = this.sequence.length; i < len; i++) {
-            let item = this.sequence[i];
+        for (let i = 0, len = this.sequence.length; i < len; i++) {
+            const item = this.sequence[i];
             if (item.type == "interruptor") {
                 let callback;
                 if (i == this.sequence.length - 1)
                     callback = () => {
                         this.turnOff();
                     };
-                let offset = item.options.offset || 0;
+                const offset = item.options.offset || 0;
                 console.log(`Will turn on ${item.options.interruptor.name} for ${item.options.duration} seconds in ${item.options.offset} seconds`);
                 this.timeouts[i] = setTimeout(() => {
                     item.options.interruptor.turnOnFor(item.options.duration, callback);
@@ -90,7 +90,7 @@ class Scenario extends Interruptor_1.default {
             this.timeouts.forEach(timeout => {
                 clearTimeout(timeout);
             });
-            this.timeouts = null;
+            this.timeouts = undefined;
         }
         this.sequence.forEach(item => {
             if (item.type == "interruptor")

@@ -33,16 +33,17 @@ class Serre {
     }
     displayMessageFor(message, time) {
         if (this.display) {
-            var line1Message = message;
+            const line1Message = message;
+            let line2Message;
             if (this.temp && this.temp1) {
-                var line2Message = () => {
+                line2Message = () => {
                     return `${moment()
                         .tz("Europe/Paris")
                         .format("DD/MM hh:mm:ss")}-T:${this.temp.value()}/${this.temp1.value()}`;
                 };
             }
             else {
-                var line2Message = () => {
+                line2Message = () => {
                     return `${moment()
                         .tz("Europe/Paris")
                         .format("DD/MM hh:mm:ss")}`;
@@ -55,8 +56,8 @@ class Serre {
         }
     }
     getConfig() {
-        let allRelays = [];
-        let sensors = [];
+        const allRelays = [];
+        const sensors = [];
         const relayFan = new RelayInterruptor_1.default({
             name: "Irrigation Zone 1 (pin 12)",
             relay: new PiRelay({ pin: 12 }),

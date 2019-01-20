@@ -4,9 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Interruptor_1 = __importDefault(require("../Interruptor"));
+let mraa;
+let groveSensor;
 try {
-    var mraa = require("mraa");
-    var groveSensor = require("jsupm_grove");
+    mraa = require("mraa");
+    groveSensor = require("jsupm_grove");
 }
 catch (err) { }
 class LedInterruptor extends Interruptor_1.default {

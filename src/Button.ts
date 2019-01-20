@@ -1,8 +1,9 @@
 const md5 = require("js-md5");
 const moment = require("moment");
+let upm: any;
 
 try {
-  var upm = require("jsupm_button");
+  upm = require("jsupm_button");
 } catch (err) {}
 
 export default class Button {
@@ -34,7 +35,7 @@ export default class Button {
     stopAfterFirstExecution = true
   ) {
     console.log(`Button ${this.name} watching`);
-    var timer = setInterval(() => {
+    const timer = setInterval(() => {
       if (this.isOn()) {
         console.log(`Button ${this.name} pressed`);
         if (stopAfterFirstExecution) {

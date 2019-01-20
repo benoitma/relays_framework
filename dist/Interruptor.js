@@ -21,13 +21,13 @@ class Interruptor {
     isOn() {
         return this.state === InterruptorState.ON;
     }
-    turn(way = "on", time = null) {
+    turn(way = "on", time = undefined) {
         if (way == "on") {
             if (isNaN(parseInt(time))) {
                 this.turnOn();
             }
             else {
-                this.turnOnFor(parseInt(time), null);
+                this.turnOnFor(parseInt(time), undefined);
             }
         }
         else if (way == "off") {
@@ -45,8 +45,8 @@ class Interruptor {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
-        this.turnedOnAt = null;
-        this.willTurnOffAt = null;
+        this.turnedOnAt = undefined;
+        this.willTurnOffAt = undefined;
         this.state = InterruptorState.OFF;
     }
     turnOnFor(seconds, callback) {
@@ -55,7 +55,7 @@ class Interruptor {
         this.willTurnOffAt = this.turnedOnAt.clone().add(seconds, "seconds");
         this.timeout = setTimeout(() => {
             this.turnOff();
-            this.timeout = null;
+            this.timeout = undefined;
             if (callback)
                 callback();
         }, seconds * 1000);
@@ -66,13 +66,13 @@ class Interruptor {
             name: this.name,
             state: this.isOn() ? "on" : "off",
             infos: {
-                turnedOnAt: this.turnedOnAt ? this.turnedOnAt.format() : null,
+                turnedOnAt: this.turnedOnAt ? this.turnedOnAt.format() : undefined,
                 willTurnOffAt: this.willTurnOffAt
                     ? this.willTurnOffAt.format("YYYY-MM-DDTHH:mm:ssZ")
-                    : null,
+                    : undefined,
                 willTurnOffAsString: this.willTurnOffAt
                     ? this.willTurnOffAt.fromNow()
-                    : null
+                    : undefined
             }
         };
     }

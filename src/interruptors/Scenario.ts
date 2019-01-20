@@ -56,8 +56,8 @@ export default class Scenario extends Interruptor {
     if (!this.sequence) throw "Sequence missing";
     if (!Array.isArray(this.sequence)) throw "Sequence should be an array";
 
-    for (var i = 0, len = this.sequence.length; i < len; i++) {
-      let item = this.sequence[i];
+    for (let i = 0, len = this.sequence.length; i < len; i++) {
+      const item = this.sequence[i];
 
       if (!item.options)
         throw "[OPTIONS ERROR] [item ${i}] item must have options]";
@@ -66,7 +66,7 @@ export default class Scenario extends Interruptor {
       if (item.type == "interruptor") {
         if (!item.options.interruptor)
           throw "[interruptor ERROR] [item ${i}] item should have an interruptor";
-        let isInterruptor = item.options.interruptor instanceof Interruptor;
+        const isInterruptor = item.options.interruptor instanceof Interruptor;
         if (!isInterruptor)
           throw "[interruptor ERROR] options.interruptor should be an instance of Interruptor";
 
@@ -81,8 +81,8 @@ export default class Scenario extends Interruptor {
     console.log(`Turning on scenario ${this.name} at ${this.turnedOnAt}`);
 
     this.timeouts = [];
-    for (var i = 0, len = this.sequence.length; i < len; i++) {
-      let item = this.sequence[i];
+    for (let i = 0, len = this.sequence.length; i < len; i++) {
+      const item = this.sequence[i];
 
       if (item.type == "interruptor") {
         let callback: () => void;
@@ -91,7 +91,7 @@ export default class Scenario extends Interruptor {
             this.turnOff();
           };
 
-        let offset = item.options.offset || 0;
+        const offset = item.options.offset || 0;
         console.log(
           `Will turn on ${item.options.interruptor.name} for ${
             item.options.duration
@@ -116,7 +116,7 @@ export default class Scenario extends Interruptor {
       this.timeouts.forEach(timeout => {
         clearTimeout(timeout);
       });
-      this.timeouts = null;
+      this.timeouts = undefined;
     }
 
     this.sequence.forEach(item => {

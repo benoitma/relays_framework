@@ -40,10 +40,11 @@ export default class Serre implements Configurator {
 
   displayMessageFor(message: String, time: Number) {
     if (this.display) {
-      var line1Message = message;
+      const line1Message = message;
+      let line2Message: () => String;
 
       if (this.temp && this.temp1) {
-        var line2Message = () => {
+        line2Message = () => {
           return `${moment()
             .tz("Europe/Paris")
             .format(
@@ -51,7 +52,7 @@ export default class Serre implements Configurator {
             )}-T:${this.temp.value()}/${this.temp1.value()}`;
         };
       } else {
-        var line2Message = () => {
+        line2Message = () => {
           return `${moment()
             .tz("Europe/Paris")
             .format("DD/MM hh:mm:ss")}`;
@@ -65,8 +66,8 @@ export default class Serre implements Configurator {
   }
 
   getConfig(): Config {
-    let allRelays = [];
-    let sensors: Array<any> = [];
+    const allRelays = [];
+    const sensors: Array<any> = [];
 
     const relayFan = new RelayInterruptor({
       name: "Irrigation Zone 1 (pin 12)",

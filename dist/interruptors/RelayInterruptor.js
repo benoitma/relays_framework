@@ -8,9 +8,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Interruptor_1 = __importStar(require("../Interruptor"));
+let mraa;
+let groveSensor;
 try {
-    var mraa = require("mraa");
-    var groveSensor = require("jsupm_grove");
+    mraa = require("mraa");
+    groveSensor = require("jsupm_grove");
 }
 catch (err) { }
 class RelayInterruptor extends Interruptor_1.default {

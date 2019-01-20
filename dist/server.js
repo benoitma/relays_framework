@@ -38,7 +38,7 @@ class App {
             }));
         });
         this.app.get(`/relays/:id`, (req, res) => {
-            this.actOnInterruptor(req.params.id, res, null);
+            this.actOnInterruptor(req.params.id, res, undefined);
         });
         this.app.get(`/relays/:id/on`, (req, res) => {
             this.actOnInterruptor(req.params.id, res, i => {
@@ -64,7 +64,7 @@ class App {
     }
     getInterruptor(id) {
         let result;
-        for (var i in this.config.relays) {
+        for (const i in this.config.relays) {
             if (this.config.relays[i].id == id) {
                 result = this.config.relays[i];
             }

@@ -1,8 +1,10 @@
 import Interruptor from "../Interruptor";
+let mraa: any;
+let groveSensor: any;
 
 try {
-  var mraa = require("mraa");
-  var groveSensor = require("jsupm_grove");
+  mraa = require("mraa");
+  groveSensor = require("jsupm_grove");
 } catch (err) {}
 
 export default class LedInterruptor extends Interruptor {

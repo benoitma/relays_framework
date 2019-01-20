@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const md5 = require("js-md5");
 const moment = require("moment");
+let upm;
 try {
-    var upm = require("jsupm_button");
+    upm = require("jsupm_button");
 }
 catch (err) { }
 class Button {
@@ -25,7 +26,7 @@ class Button {
     // Execute function when button is pressed
     watchOn(interval, callback, stopAfterFirstExecution = true) {
         console.log(`Button ${this.name} watching`);
-        var timer = setInterval(() => {
+        const timer = setInterval(() => {
             if (this.isOn()) {
                 console.log(`Button ${this.name} pressed`);
                 if (stopAfterFirstExecution) {
