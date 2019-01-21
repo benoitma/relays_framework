@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const RelayInterruptor_1 = __importDefault(require("../interruptors/RelayInterruptor"));
+const interruptors_1 = require("../interruptors");
 let gpio;
 let raspi;
 const moment = require("moment");
@@ -12,23 +9,8 @@ try {
     gpio = require("raspi-gpio");
 }
 catch (err) { }
-class PiRelay {
-    constructor(options) {
-        if (gpio) {
-            this.output = new gpio.DigitalOutput(options.pin);
-        }
-    }
-    on() {
-        if (gpio)
-            this.output.write(gpio.LOW);
-    }
-    off() {
-        if (gpio)
-            this.output.write(gpio.HIGH);
-    }
-}
 class Serre {
-    constructor(options = {}) {
+    constructor() {
         this.displayMessageFor("App is starting", 2000);
     }
     displayMessageFor(message, time) {
@@ -58,9 +40,9 @@ class Serre {
     getConfig() {
         const allRelays = [];
         const sensors = [];
-        const relayFan = new RelayInterruptor_1.default({
+        const relayFan = new interruptors_1.RelayInterruptor({
             name: "Irrigation Zone 1 (pin 12)",
-            relay: new PiRelay({ pin: 12 }),
+            relay: new interruptors_1.PiRelay({ pin: 12 }),
             type: "NC"
         });
         allRelays.push(relayFan);

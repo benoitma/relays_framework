@@ -83,7 +83,8 @@ class App {
         }
     }
 }
-const configurator = config_1.default("serre");
+const configName = process.env.CONFIG_NAME || (process.argv[2] || "toto");
+const configurator = config_1.default(configName);
 configurator.onReady(config => {
     new App(config);
 });

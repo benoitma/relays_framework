@@ -1,4 +1,4 @@
-import RelayInterruptor from "../interruptors/RelayInterruptor";
+import { RelayInterruptor, PiRelay } from "../interruptors";
 import Interruptor from "../Interruptor";
 import { Config, Configurator } from ".";
 
@@ -11,30 +11,12 @@ try {
   gpio = require("raspi-gpio");
 } catch (err) {}
 
-class PiRelay {
-  output: any;
-
-  constructor(options: { pin: number }) {
-    if (gpio) {
-      this.output = new gpio.DigitalOutput(options.pin);
-    }
-  }
-
-  on() {
-    if (gpio) this.output.write(gpio.LOW);
-  }
-
-  off() {
-    if (gpio) this.output.write(gpio.HIGH);
-  }
-}
-
 export default class Serre implements Configurator {
   display: any;
   temp: any;
   temp1: any;
 
-  constructor(options: {} = {}) {
+  constructor() {
     this.displayMessageFor("App is starting", 2000);
   }
 

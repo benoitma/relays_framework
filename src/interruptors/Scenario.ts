@@ -29,14 +29,7 @@ import Interruptor, { InterruptorState } from "../Interruptor";
 
 export default class Scenario extends Interruptor {
   description: String;
-  sequence: Array<{
-    type: String;
-    options: {
-      interruptor: Interruptor;
-      duration: number;
-      offset: number;
-    };
-  }>;
+  sequence: Array<any>;
   timeouts: Array<NodeJS.Timer>;
 
   constructor(options: {

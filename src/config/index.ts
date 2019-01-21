@@ -1,5 +1,6 @@
 import Interruptor from "../Interruptor";
 import Serre from "./serre";
+import Water from "./water";
 
 interface Config {
   relays: Array<Interruptor>;
@@ -20,7 +21,9 @@ export { Config, Configurator };
 export default (name: String): Configurator => {
   if (name === "serre") {
     return new Serre();
+  } else if (name === "water") {
+    return new Water();
   } else {
-    return new Serre();
+    throw new Error("Should be a valid config name");
   }
 };
