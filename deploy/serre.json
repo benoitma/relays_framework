@@ -2,12 +2,12 @@
   "apps": [
     {
       "name": "api",
-      "script": "sudo npm start -- serre"
+      "script": "npm start -- serre"
     }
   ],
   "deploy": {
     "production": {
-      "user": "pi",
+      "user": "root",
       "host": ["192.168.86.170"],
       "ref": "origin/master",
       "repo": "https://github.com/benoitma/relays_framework.git",
