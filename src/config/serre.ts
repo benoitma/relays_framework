@@ -57,7 +57,7 @@ export default class Serre implements Configurator {
       name: "Fan",
       port: 7,
       builder: "pi",
-      type: "NC"
+      type: "NO"
     });
     allRelays.push(relayFan);
 
