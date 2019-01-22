@@ -53,6 +53,7 @@ class Serre {
         };
     }
     onReady(callback) {
+        console.log("RASPI", !!raspi);
         if (raspi) {
             raspi(() => {
                 callback(this.getConfig());

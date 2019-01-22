@@ -106,7 +106,7 @@ class App {
   }
 }
 
-const configName = process.env.CONFIG_NAME || (process.argv[2] || "toto");
+const configName = process.env.CONFIG_NAME || (process.argv[2] || "serre");
 const configurator = getConfigurator(configName);
 configurator.onReady(config => {
   new App(config);

@@ -83,7 +83,7 @@ class App {
         }
     }
 }
-const configName = process.env.CONFIG_NAME || (process.argv[2] || "toto");
+const configName = process.env.CONFIG_NAME || (process.argv[2] || "serre");
 const configurator = config_1.default(configName);
 configurator.onReady(config => {
     new App(config);
