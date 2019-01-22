@@ -8,7 +8,9 @@ try {
     raspi = require("raspi");
     gpio = require("raspi-gpio");
 }
-catch (err) { }
+catch (err) {
+    console.log(err);
+}
 class Serre {
     constructor() {
         this.displayMessageFor("App is starting", 2000);
@@ -41,8 +43,9 @@ class Serre {
         const allRelays = [];
         const sensors = [];
         const relayFan = new interruptors_1.RelayInterruptor({
-            name: "Irrigation Zone 1 (pin 12)",
-            relay: new interruptors_1.PiRelay({ pin: 12 }),
+            name: "Fan",
+            port: 7,
+            builder: "pi",
             type: "NC"
         });
         allRelays.push(relayFan);
@@ -55,7 +58,7 @@ class Serre {
     onReady(callback) {
         console.log("RASPI", !!raspi);
         if (raspi) {
-            raspi(() => {
+            raspi.init(() => {
                 callback(this.getConfig());
             });
         }

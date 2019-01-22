@@ -1,4 +1,4 @@
-import { RelayInterruptor, PiRelay } from "../interruptors";
+import { RelayInterruptor } from "../interruptors";
 import Interruptor from "../Interruptor";
 import { Config, Configurator } from ".";
 

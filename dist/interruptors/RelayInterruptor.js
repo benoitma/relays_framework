@@ -10,24 +10,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Interruptor_1 = __importStar(require("../Interruptor"));
 let mraa;
 let groveSensor;
+let gpio;
 try {
     mraa = require("mraa");
     groveSensor = require("jsupm_grove");
+}
+catch (err) { }
+try {
+    gpio = require("raspi-gpio");
 }
 catch (err) { }
 class RelayInterruptor extends Interruptor_1.default {
     constructor(options) {
         super(options);
         this.builder = options.builder;
-        if (options.builder == "grove") {
+        if (options.builder === "pi") {
+            if (gpio) {
+                this.relay = new gpio.DigitalOutput(options.port);
+            }
+        }
+        else if (options.builder == "grove") {
             this.relay = new groveSensor.GroveRelay(options.port);
             if (this.relay.isOn())
                 this.state = Interruptor_1.InterruptorState.ON;
             if (this.relay.isOff())
                 this.state = Interruptor_1.InterruptorState.OFF;
         }
-        else if (options.relay) {
-            this.relay = options.relay;
+        if (options.type === "NC") {
             setTimeout(() => {
                 this.turnOff();
             }, 1000);
@@ -42,13 +51,21 @@ class RelayInterruptor extends Interruptor_1.default {
         }
     }
     turnOn() {
-        if (this.relay)
+        if (this.builder === "pi" && !!gpio) {
+            this.relay.write(gpio.HIGH);
+        }
+        else if (this.builder === "grove") {
             this.relay.on();
+        }
         super.turnOn();
     }
     turnOff() {
-        if (this.relay)
-            this.relay.off();
+        if (this.builder === "pi" && !!gpio) {
+            this.relay.write(gpio.HIGH);
+        }
+        else if (this.builder === "grove") {
+            this.relay.on();
+        }
         super.turnOff();
     }
 }
