@@ -68,7 +68,7 @@ export default class Serre implements Configurator {
   onReady(callback: (config: Config) => void) {
     console.log("RASPI", !!raspi);
     if (raspi) {
-      raspi(() => {
+      raspi.init(() => {
         callback(this.getConfig());
       });
     } else {

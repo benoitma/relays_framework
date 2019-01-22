@@ -136,7 +136,7 @@ export default class Water implements Configurator {
 
   onReady(callback: (config: Config) => void) {
     if (raspi) {
-      raspi(() => {
+      raspi.init(() => {
         callback(this.getConfig());
       });
     } else {
