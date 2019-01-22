@@ -9,7 +9,9 @@ const moment = require("moment");
 try {
   raspi = require("raspi");
   gpio = require("raspi-gpio");
-} catch (err) {}
+} catch (err) {
+  console.log(err);
+}
 
 export default class Serre implements Configurator {
   display: any;
@@ -52,8 +54,9 @@ export default class Serre implements Configurator {
     const sensors: Array<any> = [];
 
     const relayFan = new RelayInterruptor({
-      name: "Irrigation Zone 1 (pin 12)",
-      relay: new PiRelay({ pin: 12 }),
+      name: "Fan",
+      port: 7,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayFan);
