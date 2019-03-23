@@ -27,6 +27,7 @@ export default class RelayInterruptor extends Interruptor {
   }) {
     super(options);
     this.builder = options.builder;
+    this.inverted = options.inverted;
     if (options.builder === "pi") {
       if (gpio) {
         this.relay = new gpio.DigitalOutput(options.port);
