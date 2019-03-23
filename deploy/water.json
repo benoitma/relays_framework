@@ -7,7 +7,7 @@
   ],
   "deploy": {
     "production": {
-      "user": "pi",
+      "user": "root",
       "host": ["192.168.86.136"],
       "ref": "origin/master",
       "repo": "https://github.com/benoitma/relays_framework.git",

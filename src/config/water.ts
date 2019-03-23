@@ -8,7 +8,9 @@ const moment = require("moment");
 try {
   raspi = require("raspi");
   gpio = require("raspi-gpio");
-} catch (err) {}
+} catch (err) {
+  console.log(err);
+}
 
 export default class Water implements Configurator {
   display: any;
