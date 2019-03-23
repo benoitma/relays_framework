@@ -109,7 +109,7 @@ export default class Water implements Configurator {
     const wateringScenario = new Scenario({
       name: "Scenario d'irrigation",
       description: "Irrigation de tout le jardin",
-      sequeNOe: watering
+      sequence: watering
     });
     allRelays.unshift(wateringScenario);
 
