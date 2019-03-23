@@ -16,12 +16,14 @@ export default class RelayInterruptor extends Interruptor {
   builder: String;
   relay: any;
   type: String;
+  inverted: Boolean;
 
   constructor(options: {
     name: String;
     port?: Number;
     builder?: String;
     type: String;
+    inverted?: Boolean;
   }) {
     super(options);
     this.builder = options.builder;
@@ -52,7 +54,7 @@ export default class RelayInterruptor extends Interruptor {
 
   turnOn() {
     if (this.builder === "pi" && !!gpio) {
-      this.relay.write(gpio.HIGH);
+      this.relay.write(this.inverted ? gpio.LOW : gpio.HIGH);
     } else if (this.builder === "grove") {
       this.relay.on();
     }
@@ -61,7 +63,7 @@ export default class RelayInterruptor extends Interruptor {
 
   turnOff() {
     if (this.builder === "pi" && !!gpio) {
-      this.relay.write(gpio.LOW);
+      this.relay.write(this.inverted ? gpio.HIGH : gpio.LOW);
     } else if (this.builder === "grove") {
       this.relay.on();
     }
