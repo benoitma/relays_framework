@@ -55,6 +55,7 @@ export default class Water implements Configurator {
     const relayInterruptor12 = new RelayInterruptor({
       name: "Irrigation Zone 1 (pin 12)",
       port: 12,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor12);
@@ -62,6 +63,7 @@ export default class Water implements Configurator {
     const relayInterruptor0 = new RelayInterruptor({
       name: "Irrigation Zone 2 (pin 0)",
       port: 0,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor0);
@@ -69,6 +71,7 @@ export default class Water implements Configurator {
     const relayInterruptor7 = new RelayInterruptor({
       name: "Irrigation zone 3 (pin 7)",
       port: 10,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor7);
@@ -76,6 +79,7 @@ export default class Water implements Configurator {
     const relayInterruptor13 = new RelayInterruptor({
       name: "Irrigation Zone 4 (pin 13)",
       port: 13,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor13);
@@ -83,6 +87,7 @@ export default class Water implements Configurator {
     const relayInterruptor3 = new RelayInterruptor({
       name: "Irrigation Zone X (pin 3)",
       port: 3,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor3);
@@ -111,6 +116,7 @@ export default class Water implements Configurator {
     const relayInterruptor2 = new RelayInterruptor({
       name: "Irrigation Zone Piscine (pin 2)",
       port: 2,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor2);
@@ -118,6 +124,7 @@ export default class Water implements Configurator {
     const relayInterruptor14 = new RelayInterruptor({
       name: "Lampe piscine (pin 14)",
       port: 14,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor14);
@@ -125,6 +132,7 @@ export default class Water implements Configurator {
     const relayInterruptor11 = new RelayInterruptor({
       name: "DO NOT OPEN (pin 11)",
       port: 11,
+      builder: "pi",
       type: "NC"
     });
     allRelays.push(relayInterruptor11);
