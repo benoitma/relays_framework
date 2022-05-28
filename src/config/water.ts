@@ -36,9 +36,7 @@ export default class Water implements Configurator {
         };
       } else {
         line2Message = () => {
-          return `${moment()
-            .tz("Europe/Paris")
-            .format("DD/MM hh:mm:ss")}`;
+          return `${moment().tz("Europe/Paris").format("DD/MM hh:mm:ss")}`;
         };
       }
 
@@ -57,7 +55,7 @@ export default class Water implements Configurator {
       port: 12,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor12);
 
@@ -66,7 +64,7 @@ export default class Water implements Configurator {
       port: 0,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor0);
 
@@ -75,7 +73,7 @@ export default class Water implements Configurator {
       port: 10,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor7);
 
@@ -84,7 +82,7 @@ export default class Water implements Configurator {
       port: 13,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor13);
 
@@ -93,28 +91,28 @@ export default class Water implements Configurator {
       port: 3,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor3);
 
     const watering = [];
     const seconds = 600; // Time per zone
-    const wait = 30; // wait between 2 zones
+    const wait = 0; // wait between 2 zones
     for (let i = 0, len = allRelays.length; i < len; i++) {
       watering.push({
         type: "interruptor",
         options: {
           interruptor: allRelays[i],
           duration: seconds,
-          offset: i * (seconds + wait)
-        }
+          offset: i * (seconds + wait),
+        },
       });
     }
 
     const wateringScenario = new Scenario({
       name: "Scenario d'irrigation",
       description: "Irrigation de tout le jardin",
-      sequence: watering
+      sequence: watering,
     });
     allRelays.unshift(wateringScenario);
 
@@ -123,7 +121,7 @@ export default class Water implements Configurator {
       port: 2,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor2);
 
@@ -132,7 +130,7 @@ export default class Water implements Configurator {
       port: 14,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor14);
 
@@ -141,14 +139,14 @@ export default class Water implements Configurator {
       port: 11,
       builder: "pi",
       type: "NC",
-      inverted: true
+      inverted: true,
     });
     allRelays.push(relayInterruptor11);
 
     return {
       relays: allRelays,
       scheduledJobs: [{ hour: 7, minute: 30, interruptor: wateringScenario }],
-      sensors: sensors
+      sensors: sensors,
     };
   }
 
