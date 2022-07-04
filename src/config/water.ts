@@ -50,6 +50,15 @@ export default class Water implements Configurator {
     const allRelays = [];
     const sensors: any[] = [];
 
+    const relayInterruptor7 = new RelayInterruptor({
+      name: "Irrigation zone 3 (pin 7)",
+      port: 10,
+      builder: "pi",
+      type: "NC",
+      inverted: true,
+    });
+    allRelays.push(relayInterruptor7);
+
     const relayInterruptor12 = new RelayInterruptor({
       name: "Irrigation Zone 1 (pin 12)",
       port: 12,
@@ -67,15 +76,6 @@ export default class Water implements Configurator {
       inverted: true,
     });
     allRelays.push(relayInterruptor0);
-
-    const relayInterruptor7 = new RelayInterruptor({
-      name: "Irrigation zone 3 (pin 7)",
-      port: 10,
-      builder: "pi",
-      type: "NC",
-      inverted: true,
-    });
-    allRelays.push(relayInterruptor7);
 
     const relayInterruptor13 = new RelayInterruptor({
       name: "Irrigation Zone 4 (pin 13)",
@@ -97,7 +97,7 @@ export default class Water implements Configurator {
 
     const watering = [];
     const seconds = 600; // Time per zone
-    const wait = 0; // wait between 2 zones
+    const wait = 7; // wait between 2 zones
     for (let i = 0, len = allRelays.length; i < len; i++) {
       watering.push({
         type: "interruptor",
