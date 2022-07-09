@@ -68,15 +68,6 @@ export default class Water implements Configurator {
     });
     allRelays.push(relayInterruptor12);
 
-    const relayInterruptor0 = new RelayInterruptor({
-      name: "Irrigation Zone 2 (pin 0)",
-      port: 0,
-      builder: "pi",
-      type: "NC",
-      inverted: true,
-    });
-    allRelays.push(relayInterruptor0);
-
     const relayInterruptor13 = new RelayInterruptor({
       name: "Irrigation Zone 4 (pin 13)",
       port: 13,
@@ -85,6 +76,15 @@ export default class Water implements Configurator {
       inverted: true,
     });
     allRelays.push(relayInterruptor13);
+
+    const relayInterruptor0 = new RelayInterruptor({
+      name: "Irrigation Zone 2 (pin 0)",
+      port: 0,
+      builder: "pi",
+      type: "NC",
+      inverted: true,
+    });
+    allRelays.push(relayInterruptor0);
 
     const relayInterruptor3 = new RelayInterruptor({
       name: "Irrigation Zone X (pin 3)",
