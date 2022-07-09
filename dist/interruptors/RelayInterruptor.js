@@ -24,6 +24,7 @@ class RelayInterruptor extends Interruptor_1.default {
     constructor(options) {
         super(options);
         this.builder = options.builder;
+        this.inverted = options.inverted;
         if (options.builder === "pi") {
             if (gpio) {
                 this.relay = new gpio.DigitalOutput(options.port);
@@ -52,7 +53,7 @@ class RelayInterruptor extends Interruptor_1.default {
     }
     turnOn() {
         if (this.builder === "pi" && !!gpio) {
-            this.relay.write(gpio.HIGH);
+            this.relay.write(this.inverted ? gpio.LOW : gpio.HIGH);
         }
         else if (this.builder === "grove") {
             this.relay.on();
@@ -61,7 +62,7 @@ class RelayInterruptor extends Interruptor_1.default {
     }
     turnOff() {
         if (this.builder === "pi" && !!gpio) {
-            this.relay.write(gpio.HIGH);
+            this.relay.write(this.inverted ? gpio.HIGH : gpio.LOW);
         }
         else if (this.builder === "grove") {
             this.relay.on();

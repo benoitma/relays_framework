@@ -46,7 +46,7 @@ class Serre {
             name: "Fan",
             port: 7,
             builder: "pi",
-            type: "NC"
+            type: "NO"
         });
         allRelays.push(relayFan);
         return {

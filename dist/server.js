@@ -3,11 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
-const scheduler = require("node-schedule");
-const moment = require("moment-timezone");
 const config_1 = __importDefault(require("./config"));
 class App {
     constructor(config) {
@@ -17,7 +14,7 @@ class App {
     }
     setupRoutes() {
         this.app.use(bodyParser.urlencoded({
-            extended: true
+            extended: true,
         }));
         this.app.use(bodyParser.json());
         // Add headers
@@ -33,7 +30,7 @@ class App {
             res.end();
         });
         this.app.get(`/relays`, (req, res) => {
-            res.json(this.config.relays.map(i => {
+            res.json(this.config.relays.map((i) => {
                 return i.getState();
             }));
         });
@@ -41,22 +38,22 @@ class App {
             this.actOnInterruptor(req.params.id, res, undefined);
         });
         this.app.get(`/relays/:id/on`, (req, res) => {
-            this.actOnInterruptor(req.params.id, res, i => {
+            this.actOnInterruptor(req.params.id, res, (i) => {
                 i.turn("on", req.query.time);
             });
         });
         this.app.get(`/relays/:id/off`, (req, res) => {
-            this.actOnInterruptor(req.params.id, res, i => {
+            this.actOnInterruptor(req.params.id, res, (i) => {
                 i.turn("off");
             });
         });
         this.app.post(`/relays/:id/on`, (req, res) => {
-            this.actOnInterruptor(req.params.id, res, i => {
+            this.actOnInterruptor(req.params.id, res, (i) => {
                 i.turn("on", req.body.time);
             });
         });
         this.app.post(`/relays/:id/off`, (req, res) => {
-            this.actOnInterruptor(req.params.id, res, i => {
+            this.actOnInterruptor(req.params.id, res, (i) => {
                 i.turn("off");
             });
         });
@@ -83,9 +80,9 @@ class App {
         }
     }
 }
-const configName = process.env.CONFIG_NAME || (process.argv[2] || "serre");
+const configName = process.env.CONFIG_NAME || process.argv[2] || "serre";
 const configurator = config_1.default(configName);
-configurator.onReady(config => {
+configurator.onReady((config) => {
     new App(config);
 });
 //# sourceMappingURL=server.js.map
