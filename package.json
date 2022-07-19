@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
-    "start": "ts-node src/index.ts",
-    "build": "tsc"
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
     "body-parser": "^1.20",

@@ -12,7 +12,7 @@
       "ref": "origin/master",
       "repo": "https://github.com/benoitma/relays_framework.git",
       "path": "/home/pi/relays_framework",
-      "post-deploy": "npm install --production && npm run build && pm2 startOrRestart /home/pi/relays_framework/current/deploy/water.json --env production",
+      "post-deploy": "npm install --production && pm2 startOrRestart /home/pi/relays_framework/current/deploy/water.json --env production",
       "env": {
         "NODE_ENV": "production"
       }
