@@ -96,7 +96,7 @@ export default class Water implements Configurator {
     allRelays.push(relayInterruptor3);
 
     const watering = [];
-    const seconds = 1200; // Time per zone
+    const seconds = 5 * 60; // Time per zone
     const wait = 30; // wait between 2 zones
     for (let i = 0, len = allRelays.length; i < len; i++) {
       watering.push({
@@ -145,7 +145,7 @@ export default class Water implements Configurator {
 
     return {
       relays: allRelays,
-      scheduledJobs: [{ hour: 7, minute: 30, interruptor: wateringScenario }],
+      scheduledJobs: [],
       sensors: sensors,
     };
   }
